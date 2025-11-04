@@ -1,0 +1,121 @@
+[
+  {
+    "__type__": "cc.AnimationClip",
+    "_name": "obstacle-1",
+    "_objFlags": 0,
+    "_native": "",
+    "sample": 10,
+    "speed": 1,
+    "wrapMode": 1,
+    "events": [],
+    "enableTrsBlending": false,
+    "_duration": 0.5,
+    "_keys": [
+      [
+        0,
+        0.5
+      ],
+      [
+        0,
+        0.2
+      ],
+      [
+        0,
+        0.2
+      ]
+    ],
+    "_stepness": 0,
+    "_curves": [
+      {
+        "modifiers": [
+          {
+            "__id__": 1
+          },
+          {
+            "__id__": 2
+          },
+          "opacity"
+        ],
+        "data": {
+          "keys": 0,
+          "values": [
+            255,
+            1
+          ],
+          "easingMethods": {
+            "0": "expoIn"
+          }
+        }
+      },
+      {
+        "modifiers": [
+          {
+            "__id__": 3
+          },
+          {
+            "__id__": 4
+          },
+          "opacity"
+        ],
+        "data": {
+          "keys": 1,
+          "values": [
+            1,
+            255
+          ],
+          "easingMethods": {
+            "0": "expoIn"
+          }
+        }
+      },
+      {
+        "modifiers": [
+          {
+            "__id__": 5
+          },
+          "eulerAngles"
+        ],
+        "data": {
+          "keys": 2,
+          "values": [
+            {
+              "__type__": "cc.Vec3",
+              "x": 0,
+              "y": 0,
+              "z": 180
+            },
+            {
+              "__type__": "cc.Vec3",
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          ],
+          "easingMethods": {}
+        }
+      }
+    ],
+    "_commonTargets": [],
+    "_hash": 3387950624
+  },
+  {
+    "__type__": "cc.animation.HierarchyPath",
+    "path": "sprite-001"
+  },
+  {
+    "__type__": "cc.animation.ComponentPath",
+    "component": "cc.UIOpacity"
+  },
+  {
+    "__type__": "cc.animation.HierarchyPath",
+    "path": "sprite"
+  },
+  {
+    "__type__": "cc.animation.ComponentPath",
+    "component": "cc.UIOpacity"
+  },
+  {
+    "__type__": "cc.animation.HierarchyPath",
+    "path": "sprite"
+  }
+]

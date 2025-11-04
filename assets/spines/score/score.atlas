@@ -1,0 +1,41 @@
+
+score.png
+size: 523,46
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
++10
+  rotate: false
+  xy: 383, 2
+  size: 69, 42
+  orig: 74, 48
+  offset: 2, 1
+  index: -1
++1000
+  rotate: false
+  xy: 2, 3
+  size: 157, 41
+  orig: 157, 41
+  offset: 0, 0
+  index: -1
++20
+  rotate: false
+  xy: 288, 3
+  size: 93, 41
+  orig: 93, 41
+  offset: 0, 0
+  index: -1
++500
+  rotate: false
+  xy: 161, 3
+  size: 125, 41
+  orig: 125, 41
+  offset: 0, 0
+  index: -1
+-10
+  rotate: false
+  xy: 454, 3
+  size: 67, 41
+  orig: 74, 48
+  offset: 3, 3
+  index: -1

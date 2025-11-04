@@ -1,0 +1,54 @@
+{
+  "__version__": "1.0.1",
+  "general": {
+    "designResolution": {
+      "width": 1334,
+      "height": 616,
+      "fitHeight": true,
+      "fitWidth": true
+    }
+  },
+  "physics": {
+    "collisionMatrix": {
+      "0": 3,
+      "1": 3
+    },
+    "collisionGroups": [
+      {
+        "index": 1,
+        "name": "Player"
+      }
+    ],
+    "maxSubSteps": 666
+  },
+  "layer": [
+    {
+      "name": "Item",
+      "value": 1
+    },
+    {
+      "name": "Obstacle",
+      "value": 2
+    },
+    {
+      "name": "Platform",
+      "value": 4
+    },
+    {
+      "name": "Decor",
+      "value": 8
+    },
+    {
+      "name": "Tutorial",
+      "value": 16
+    },
+    {
+      "name": "BG",
+      "value": 128
+    },
+    {
+      "name": "Effects",
+      "value": 64
+    }
+  ]
+}

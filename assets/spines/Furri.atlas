@@ -1,0 +1,104 @@
+
+Furri.png
+size: 407,150
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Back1
+  rotate: false
+  xy: 82, 19
+  size: 38, 15
+  orig: 38, 15
+  offset: 0, 0
+  index: -1
+Back2
+  rotate: false
+  xy: 2, 18
+  size: 38, 16
+  orig: 38, 16
+  offset: 0, 0
+  index: -1
+Back3
+  rotate: false
+  xy: 42, 18
+  size: 38, 16
+  orig: 38, 16
+  offset: 0, 0
+  index: -1
+Back4
+  rotate: false
+  xy: 82, 3
+  size: 38, 14
+  orig: 38, 14
+  offset: 0, 0
+  index: -1
+Car
+  rotate: false
+  xy: 122, 60
+  size: 244, 88
+  orig: 244, 91
+  offset: 0, 3
+  index: -1
+EnemyCar1
+  rotate: false
+  xy: 122, 2
+  size: 233, 56
+  orig: 233, 56
+  offset: 0, 0
+  index: -1
+Enemycar2
+  rotate: false
+  xy: 2, 36
+  size: 118, 112
+  orig: 118, 118
+  offset: 0, 6
+  index: -1
+Enemytire1
+  rotate: true
+  xy: 368, 106
+  size: 42, 35
+  orig: 42, 36
+  offset: 0, 0
+  index: -1
+Enemytire2
+  rotate: false
+  xy: 368, 69
+  size: 34, 35
+  orig: 35, 37
+  offset: 1, 0
+  index: -1
+Front1
+  rotate: false
+  xy: 368, 60
+  size: 37, 7
+  orig: 37, 7
+  offset: 0, 0
+  index: -1
+Front2
+  rotate: false
+  xy: 2, 8
+  size: 34, 8
+  orig: 34, 8
+  offset: 0, 0
+  index: -1
+Front3
+  rotate: false
+  xy: 38, 9
+  size: 34, 7
+  orig: 34, 7
+  offset: 0, 0
+  index: -1
+Front4
+  rotate: false
+  xy: 357, 5
+  size: 40, 8
+  orig: 40, 8
+  offset: 0, 0
+  index: -1
+Tire
+  rotate: true
+  xy: 357, 15
+  size: 43, 40
+  orig: 43, 42
+  offset: 0, 1
+  index: -1

@@ -1,0 +1,13 @@
+{
+  "ver": "1.0.11",
+  "importer": "animation-clip",
+  "imported": true,
+  "uuid": "f84d219e-c97a-45e0-9bc8-2e22ffdc46e4",
+  "files": [
+    ".json"
+  ],
+  "subMetas": {},
+  "userData": {
+    "name": "zoom_in_and_fade"
+  }
+}
