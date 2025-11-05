@@ -49,6 +49,10 @@
     {
       "name": "Effects",
       "value": 64
+    },
+    {
+      "name": "Player",
+      "value": 32
     }
   ]
 }

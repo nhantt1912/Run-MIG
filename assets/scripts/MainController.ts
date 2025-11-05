@@ -211,8 +211,7 @@ export class MainController extends Component {
         this.node.position = this.mCurrentPos;
 
         if (this.mVelocity > 0) {
-          this.mCurrentPos.y +=
-            this.mVelocity * scaleTimeToUse * scaleTimeToUse;
+          this.mCurrentPos.y += this.mVelocity * scaleTimeToUse * scaleTimeToUse;
           this.mVelocity -= this.gravity * scaleTimeToUse * scaleTimeToUse;
         }
         if (this.mVelocity <= 0) {
