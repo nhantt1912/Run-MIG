@@ -36,6 +36,8 @@ export enum EventType {
   COLLECT = "collect",
   TUTORIAL_HINT = "tutorial_hint",
   MAP_CHANGE = "MAP_CHANGE",
+  UPDATE_SCORE = "UPDATE_SCORE",
+  UPDATE_HEART = "UPDATE_HEART",
 }
 
 export enum ActionIngame {

@@ -3,6 +3,8 @@ import { DeltaTime_Monitor } from "../Cores/DefinesStudy";
 import { MapControllerStudy } from "../Controller/MapControllerStudy";
 import Timer from "../../core/Timer";
 import { GameStateManager } from "./GameStateManager";
+import EventManager from "../../core/EventManager";
+import { EventType } from "../../Defines";
 const { ccclass, property } = _decorator;
 
 @ccclass("InGameManagerStudy")
@@ -13,6 +15,8 @@ export class InGameManagerStudy extends Component {
   private bonusSpeed: number = 0.8;
   private bonusSlow: number = 0.8;
 
+  private currentHeart: number = 5;
+
   timerMain: Timer = new Timer();
 
   private mSpeed = 1;
@@ -20,11 +24,15 @@ export class InGameManagerStudy extends Component {
 
   protected start(): void {
     GameStateManager.Instance.play();
+    EventManager.GetInstance().on(
+      EventType.UPDATE_HEART,
+      this.checkHeartCurrent,
+      this
+    );
   }
 
-
   update(dt: number) {
-    if(!GameStateManager.Instance.isPlaying()) return;
+    if (!GameStateManager.Instance.isPlaying()) return;
 
     this.deltaTime += dt;
     if (this.deltaTime > DeltaTime_Monitor) {
@@ -42,8 +50,14 @@ export class InGameManagerStudy extends Component {
 
     this.timerMain.Update(deltaTime);
 
-    this.mapController.update(
-      timeScale * this.bonusSpeed * this.bonusSlow
-    );
+    this.mapController.update(timeScale * this.bonusSpeed * this.bonusSlow);
+  }
+
+  checkHeartCurrent(heart: number) {
+    this.currentHeart = heart;
+
+    if (this.currentHeart <= 0) {
+      GameStateManager.Instance.gameOver();
+    }
   }
 }

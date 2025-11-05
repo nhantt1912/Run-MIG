@@ -1,8 +1,9 @@
 
 import { _decorator, Component, Node } from 'cc';
 import { MiniMap } from '../GamePlay/MiniMap';
-import { DeltaTime_Monitor } from '../Cores/DefinesStudy';
+import { DeltaTime_Monitor, EVENT_TYPE } from '../Cores/DefinesStudy';
 import Timer from '../../core/Timer';
+import EventManager from '../../core/EventManager';
 const { ccclass, property } = _decorator;
 
 @ccclass('MapControllerStudy')
@@ -33,6 +34,7 @@ export class MapControllerStudy extends Component {
                     console.log(`Starting Map ${this.currentMapIndex}`);
                 } else {
                     console.log(`ALL MAPS FINISHED!`);
+                    EventManager.GetInstance().emit(EVENT_TYPE.GAME_WIN);
                 }
             }
         }

@@ -3,6 +3,7 @@ import { EventTarget } from 'cc';
 class EventManager extends EventTarget
 {
     private instance: EventManager = null;
+    EventType: any;
     GetInstance()
     {
         if (this.instance == null)

@@ -14,7 +14,9 @@ import {
   PLAYER_STATE_NAME,
 } from "../Cores/DefinesStudy";
 import EventManager from "../../core/EventManager";
-import { Layer } from "../../Defines";
+import { EventType, Layer } from "../../Defines";
+import { Item } from "../../Item";
+import { Obstacle } from "../../Obstacle";
 const { ccclass, property } = _decorator;
 
 @ccclass("PlayerController")
@@ -71,30 +73,41 @@ export class PlayerController extends Component {
     otherCollider: BoxCollider2D,
     contact: IPhysics2DContact | null
   ) {
-    if (otherCollider.node.layer == Layer.PLATFORM) {
-      console.log("onBeginContact");
-      let self = selfCollider.worldAABB;
-      let other = otherCollider.worldAABB;
-      const height = self.yMax - self.yMin + 130;
-      if (
-        self.xMax >= other.xMin &&
-        self.xMin <= other.xMax &&
-        self.yMin >= other.yMin
-      ) {
-        this.node.setWorldPosition(
-          new Vec3(
-            this.node.worldPosition.x,
-            other.yMax + height / 2,
-            this.node.worldPosition.z
-          )
-        );
-        this.mCurrentPos = new Vec3(
-          this.mCurrentPos.x,
-          this.node.position.y,
-          this.mCurrentPos.z
-        );
-        this.changeState(PLAYER_STATE.RUN);
-      }
+    switch (otherCollider.node.layer) {
+      case Layer.ITEM:
+        otherCollider.node.getComponent(Item).onCollect();
+        break;
+      case Layer.OBSTACLE:
+        if (this.currentState == PLAYER_STATE.RUN) {
+          otherCollider.node.getComponent(Obstacle).onHit();
+        }
+        break;
+      case Layer.PLATFORM:
+        console.log("onBeginContact");
+        let self = selfCollider.worldAABB;
+        let other = otherCollider.worldAABB;
+        const height = self.yMax - self.yMin + 130;
+        if (
+          self.xMax >= other.xMin &&
+          self.xMin <= other.xMax &&
+          self.yMin >= other.yMin
+        ) {
+          this.node.setWorldPosition(
+            new Vec3(
+              this.node.worldPosition.x,
+              other.yMax + height / 2,
+              this.node.worldPosition.z
+            )
+          );
+          this.mCurrentPos = new Vec3(
+            this.mCurrentPos.x,
+            this.node.position.y,
+            this.mCurrentPos.z
+          );
+          this.changeState(PLAYER_STATE.RUN);
+          this.isGrounded = true;
+        }
+        break;
     }
   }
 
@@ -107,10 +120,7 @@ export class PlayerController extends Component {
       otherCollider.node.layer == Layer.PLATFORM &&
       this.currentState == PLAYER_STATE.RUN
     ) {
-      this.isGrounded = true;
-      this.gravity = -5;
       this.changeState(PLAYER_STATE.JUMP_DOWN);
-      console.log("onEndContact");
     }
   }
 

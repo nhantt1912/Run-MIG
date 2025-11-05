@@ -112,7 +112,9 @@ export class Item extends Component {
           itemType: this.type,
           special: this.specialType,
         };
-        EventManager.GetInstance().emit(EventType.COLLECT, param);
+        // EventManager.GetInstance().emit(EventType.COLLECT, param);
+        EventManager.GetInstance().emit(EventType.UPDATE_SCORE, 100);
+
         if (this.skeleton) {
           this.skeleton.setAnimation(0, ItemAnim.COLLECT, false);
           this.skeleton.setCompleteListener(() => {
@@ -153,7 +155,7 @@ export class Item extends Component {
     this.collected = true;
     this.isX2 = isX2;
     this.switchState(ItemState.COLLECT);
-    FXMgr.Instance.playFX(EFFECTS.PLUS50);
+    // FXMgr.Instance.playFX(EFFECTS.PLUS50);
     // FXMgr.Instance.collectCoin(this.node);
     // this.node.getComponent(Animation)?.play("collect-item");
   }

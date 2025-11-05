@@ -69,7 +69,8 @@ export class Obstacle extends Component {
     let param = {
       itemType: ObjectType.OBSTACLE,
     };
-    EventManager.GetInstance().emit(EventType.COLLECT, param);
+    //  EventManager.GetInstance().emit(EventType.COLLECT, param);
+    EventManager.GetInstance().emit(EventType.UPDATE_HEART, 1);
     // this.score.setAnimation(0, ScoreAnim.OBSTACLE, false);
   }
 
