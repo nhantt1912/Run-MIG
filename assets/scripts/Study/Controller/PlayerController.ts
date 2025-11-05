@@ -66,45 +66,57 @@ export class PlayerController extends Component {
     this.onChangeState(newState);
   }
 
-  onBeginContact(selfCollider: BoxCollider2D, otherCollider: BoxCollider2D, contact: IPhysics2DContact | null) {
-    if(otherCollider.node.layer == Layer.PLATFORM) {
-        let self = selfCollider.worldAABB;
-        let other = otherCollider.worldAABB;
-        const height = self.yMax - self.yMin + 130;
-        if (
-          self.xMax >= other.xMin &&
-          self.xMin <= other.xMax &&
-          self.yMin >= other.yMin
-        ) {
-          this.node.setWorldPosition(
-            new Vec3(
-              this.node.worldPosition.x,
-              other.yMax + height / 2,
-              this.node.worldPosition.z
-            )
-          );
-          this.mCurrentPos = new Vec3(
-            this.mCurrentPos.x,
-            this.node.position.y,
-            this.mCurrentPos.z
-          );
-          this.changeState(PLAYER_STATE.RUN);
-        }      
+  onBeginContact(
+    selfCollider: BoxCollider2D,
+    otherCollider: BoxCollider2D,
+    contact: IPhysics2DContact | null
+  ) {
+    if (otherCollider.node.layer == Layer.PLATFORM) {
+      console.log("onBeginContact");
+      let self = selfCollider.worldAABB;
+      let other = otherCollider.worldAABB;
+      const height = self.yMax - self.yMin + 130;
+      if (
+        self.xMax >= other.xMin &&
+        self.xMin <= other.xMax &&
+        self.yMin >= other.yMin
+      ) {
+        this.node.setWorldPosition(
+          new Vec3(
+            this.node.worldPosition.x,
+            other.yMax + height / 2,
+            this.node.worldPosition.z
+          )
+        );
+        this.mCurrentPos = new Vec3(
+          this.mCurrentPos.x,
+          this.node.position.y,
+          this.mCurrentPos.z
+        );
+        this.changeState(PLAYER_STATE.RUN);
+      }
     }
   }
 
-  onEndContact(selfCollider: BoxCollider2D, otherCollider: BoxCollider2D, contact: IPhysics2DContact | null) {
-    if(otherCollider.node.layer == Layer.PLATFORM && this.currentState == PLAYER_STATE.RUN) {
-     // this.gravity = -5;
-     //   this.changeState(PLAYER_STATE.JUMP_DOWN);
-     console.log("onEndContact");
+  onEndContact(
+    selfCollider: BoxCollider2D,
+    otherCollider: BoxCollider2D,
+    contact: IPhysics2DContact | null
+  ) {
+    if (
+      otherCollider.node.layer == Layer.PLATFORM &&
+      this.currentState == PLAYER_STATE.RUN
+    ) {
+      this.isGrounded = true;
+      this.gravity = -5;
+      this.changeState(PLAYER_STATE.JUMP_DOWN);
+      console.log("onEndContact");
     }
   }
 
   UpdatePosition() {}
 
   private applyPhysics(deltaTime: number) {
-
     let scaleTime = deltaTime * 5;
 
     this.velocityY += this.gravity * scaleTime;
@@ -121,7 +133,10 @@ export class PlayerController extends Component {
       this.isGrounded = false;
       if (this.velocityY > 0 && this.currentState !== PLAYER_STATE.JUMP_UP) {
         this.changeState(PLAYER_STATE.JUMP_UP);
-      } else if (this.velocityY <= 0 && this.currentState !== PLAYER_STATE.JUMP_DOWN) {
+      } else if (
+        this.velocityY <= 0 &&
+        this.currentState !== PLAYER_STATE.JUMP_DOWN
+      ) {
         this.changeState(PLAYER_STATE.JUMP_DOWN);
       }
     }
@@ -158,7 +173,7 @@ export class PlayerController extends Component {
   private onJumpUp() {
     if (this.isGrounded) {
       this.playAnimation(PLAYER_STATE_NAME.JUMP_UP);
-      this.velocityY = this.jumpForce ;
+      this.velocityY = this.jumpForce;
       this.isGrounded = false;
     }
   }
