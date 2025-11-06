@@ -9,19 +9,16 @@ export class ScorePanel extends PanelBase {
   @property(Label)
   scoreLabel: Label = null;
 
-  private scoreCurrent: number = 0;
-
   protected start(): void {
     EventManager.GetInstance().on(
-      EventType.UPDATE_SCORE,
+      EventType.ON_SCORE_CHANGE,
       this.updateScore,
       this
     );
   }
 
   updateScore(score: number) {
-    this.scoreCurrent += score;
-    this.updateText(this.scoreLabel, this.scoreCurrent.toString());
-    console.log(`Score: ${this.scoreCurrent}`);
+    console.log("updateScore", score);
+    this.updateText(this.scoreLabel, score.toString());
   }
 }

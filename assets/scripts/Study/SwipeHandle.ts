@@ -1,6 +1,7 @@
 import { _decorator, Component, Node, EventTouch, Vec2, EventTarget } from "cc";
 import EventManager from "../core/EventManager";
-import { EVENT_TYPE } from "./Cores/DefinesStudy";
+import { EVENT_TYPE, GAME_STATE } from "./Cores/DefinesStudy";
+import { GameStateManager } from "./Manager/GameStateManager";
 const { ccclass, property } = _decorator;
 
 @ccclass("SwipeHandler")
@@ -26,12 +27,15 @@ export class SwipeHandler extends Component {
   }
 
   private onTouchStart(event: EventTouch) {
+    if (GameStateManager.Instance.currentState == GAME_STATE.GAME_OVER) return;
     const pos = event.getLocation();
     this.startTouchPos = new Vec2(pos.x, pos.y);
     this.hasSwipedUp = false;
   }
 
   private onTouchMove(event: EventTouch) {
+    if (GameStateManager.Instance.currentState == GAME_STATE.GAME_OVER) return;
+
     if (!this.startTouchPos || this.hasSwipedUp) return;
 
     const currentPos = event.getLocation();
@@ -45,6 +49,8 @@ export class SwipeHandler extends Component {
   }
 
   private onTouchEnd() {
+    if (GameStateManager.Instance.currentState == GAME_STATE.GAME_OVER) return;
+
     this.startTouchPos = null;
     this.hasSwipedUp = false;
   }

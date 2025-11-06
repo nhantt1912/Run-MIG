@@ -11,13 +11,15 @@ export enum PLAYER_STATE {
     IDLE,
     RUN,
     JUMP_UP,
-    JUMP_DOWN
+    JUMP_DOWN,
+    EXTRA_JUMP
 }
 
 export enum PLAYER_STATE_NAME {
     IDLE = "Idle",
     RUN = "Running",
     JUMP_UP = "JumpUp",
+    EXTRA_JUMP = "ExtraJump",
     JUMP_DOWN = "JumpDown"
 }
 

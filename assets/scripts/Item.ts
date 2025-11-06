@@ -66,7 +66,7 @@ export class Item extends Component {
   }
 
   protected onEnable(): void {
-    this.switchState(ItemState.IDLE);
+    // this.switchState(ItemState.IDLE);
   }
 
   // update() {
@@ -113,7 +113,10 @@ export class Item extends Component {
           special: this.specialType,
         };
         // EventManager.GetInstance().emit(EventType.COLLECT, param);
-        EventManager.GetInstance().emit(EventType.UPDATE_SCORE, 100);
+        EventManager.GetInstance().emit(
+          EventType.COLLECT_ITEM,
+          this.specialType
+        );
 
         if (this.skeleton) {
           this.skeleton.setAnimation(0, ItemAnim.COLLECT, false);
@@ -125,22 +128,22 @@ export class Item extends Component {
           this.sprite.active = false;
         }
         let scoreAnim = ScoreAnim.ITEM;
-        if (this.specialType > 0) {
-          if (this.isX2) {
-            scoreAnim = ScoreAnim.SPECIAL_ITEM_X2;
-          } else {
-            scoreAnim = ScoreAnim.SPECIAL_ITEM;
-          }
-        } else {
-          if (this.isX2) {
-            scoreAnim = ScoreAnim.ITEM_X2;
-          } else {
-            scoreAnim = ScoreAnim.ITEM;
-          }
-        }
-        if (this.type === 0 && this.specialType === 0) {
-          scoreAnim = ScoreAnim.ITEM_X2;
-        }
+        // if (this.specialType > 0) {
+        //   if (this.isX2) {
+        //     scoreAnim = ScoreAnim.SPECIAL_ITEM_X2;
+        //   } else {
+        //     scoreAnim = ScoreAnim.SPECIAL_ITEM;
+        //   }
+        // } else {
+        //   if (this.isX2) {
+        //     scoreAnim = ScoreAnim.ITEM_X2;
+        //   } else {
+        //     scoreAnim = ScoreAnim.ITEM;
+        //   }
+        // }
+        // if (this.type === 0 && this.specialType === 0) {
+        //   scoreAnim = ScoreAnim.ITEM_X2;
+        // }
         // this.score.setAnimation(0, scoreAnim, false);
 
         break;

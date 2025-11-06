@@ -9,18 +9,16 @@ export class HeartPanel extends PanelBase {
   @property(Label)
   heartLable: Label = null;
 
-  private heartCurrent: number = 5;
-
   protected start(): void {
     EventManager.GetInstance().on(
-      EventType.UPDATE_HEART,
+      EventType.ON_HEART_CHANGE,
       this.updateHeart,
       this
     );
   }
 
   updateHeart(heart: number) {
-    this.heartCurrent -= heart;
-    this.updateText(this.heartLable, this.heartCurrent.toString());
+    console.log("updateHeart", heart);
+    this.updateText(this.heartLable, heart.toString());
   }
 }

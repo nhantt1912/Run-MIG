@@ -1,0 +1,60 @@
+{
+  "players": [
+    {
+      "playerName": "ShadowHunter",
+      "score": 4000
+    },
+    {
+      "playerName": "EliteGamer",
+      "score": 8000
+    },
+    {
+      "playerName": "RookieHero",
+      "score": 1000
+    },
+    {
+      "playerName": "ThunderBolt",
+      "score": 6000
+    },
+    {
+      "playerName": "ProGamer123",
+      "score": 9500
+    },
+    {
+      "playerName": "DragonSlayer",
+      "score": 7500
+    },
+    {
+      "playerName": "StormBreaker",
+      "score": 3000
+    },
+    {
+      "playerName": "LegendPlayer",
+      "score": 9000
+    },
+    {
+      "playerName": "SkyWalker",
+      "score": 7000
+    },
+    {
+      "playerName": "MasterChief",
+      "score": 8200
+    },
+    {
+      "playerName": "PhoenixRise",
+      "score": 5000
+    },
+    {
+      "playerName": "IronFist",
+      "score": 2000
+    },
+    {
+      "playerName": "NinjaPlayer",
+      "score": 7800
+    },
+    {
+      "playerName": "SpeedRunner",
+      "score": 8750
+    }
+  ]
+}

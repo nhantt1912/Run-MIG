@@ -54,15 +54,15 @@ export class Obstacle extends Component {
   }
 
   protected onEnable(): void {
-    if (this.type === OBSTACLE_TYPE.CAN_BE_KNOCKED_OUT) {
-      this.sprite.active = true;
-      this.mainAnimation.node.active = false;
-      this.mainAnimation.node.setScale(Vec3.ONE);
-      this.mainAnimation.node.setPosition(Vec3.ZERO);
-      if (this.mainAnimation.node.getComponent(UIOpacity)) {
-        this.mainAnimation.node.getComponent(UIOpacity).opacity = 255;
-      }
-    }
+    // if (this.type === OBSTACLE_TYPE.CAN_BE_KNOCKED_OUT) {
+    //   this.sprite.active = true;
+    //   this.mainAnimation.node.active = false;
+    //   this.mainAnimation.node.setScale(Vec3.ONE);
+    //   this.mainAnimation.node.setPosition(Vec3.ZERO);
+    //   if (this.mainAnimation.node.getComponent(UIOpacity)) {
+    //     this.mainAnimation.node.getComponent(UIOpacity).opacity = 255;
+    //   }
+    // }
   }
 
   public onHit() {
@@ -70,7 +70,7 @@ export class Obstacle extends Component {
       itemType: ObjectType.OBSTACLE,
     };
     //  EventManager.GetInstance().emit(EventType.COLLECT, param);
-    EventManager.GetInstance().emit(EventType.UPDATE_HEART, 1);
+    EventManager.GetInstance().emit(EventType.ON_HIT, this.type);
     // this.score.setAnimation(0, ScoreAnim.OBSTACLE, false);
   }
 

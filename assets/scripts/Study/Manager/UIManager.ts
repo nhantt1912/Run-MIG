@@ -17,6 +17,6 @@ export class UIManager extends Component {
   }
 
   showGameOverPopup() {
-    this.gameOverPopup.active = true;
+    // this.gameOverPopup.active = true;
   }
 }

@@ -7,6 +7,7 @@ import {
   Node,
   Animation,
   Vec3,
+  Label,
 } from "cc";
 import {
   EVENT_TYPE,
@@ -27,11 +28,16 @@ export class PlayerController extends Component {
   @property(BoxCollider2D)
   boxCollider: BoxCollider2D = null;
 
+  @property(String)
+  playerName: string = "";
+
+  countJump: number = 0;
+
   private currentState: PLAYER_STATE = PLAYER_STATE.NONE;
 
   private velocityY: number = 0;
-  private gravity: number = -10;
-  private jumpForce: number = 20;
+  private gravity: number = -1;
+  private jumpForce: number = 10;
   private isGrounded: boolean = true;
   private groundY: number = 0;
 
@@ -49,7 +55,7 @@ export class PlayerController extends Component {
     this.boxCollider.on(Contact2DType.END_CONTACT, this.onEndContact, this);
   }
 
-  update(deltaTime: number) {
+  Update(deltaTime: number) {
     if (
       this.currentState === PLAYER_STATE.JUMP_UP ||
       this.currentState === PLAYER_STATE.JUMP_DOWN
@@ -58,8 +64,22 @@ export class PlayerController extends Component {
     }
   }
 
+  onDestroy() {
+    EventManager.GetInstance().off(EVENT_TYPE.SWIPE_UP, this.onSwipeUp, this);
+    this.boxCollider.off(
+      Contact2DType.BEGIN_CONTACT,
+      this.onBeginContact,
+      this
+    );
+    this.boxCollider.off(Contact2DType.END_CONTACT, this.onEndContact, this);
+  }
+
+  onGameOver() {
+    this.changeState(PLAYER_STATE.IDLE);
+  }
+
   onSwipeUp() {
-    this.gravity = -10;
+    this.gravity = -0.2;
     this.changeState(PLAYER_STATE.JUMP_UP);
   }
 
@@ -124,10 +144,8 @@ export class PlayerController extends Component {
     }
   }
 
-  UpdatePosition() {}
-
   private applyPhysics(deltaTime: number) {
-    let scaleTime = deltaTime * 5;
+    let scaleTime = deltaTime;
 
     this.velocityY += this.gravity * scaleTime;
 
@@ -157,6 +175,7 @@ export class PlayerController extends Component {
   onChangeState(newState: PLAYER_STATE) {
     switch (newState) {
       case PLAYER_STATE.IDLE:
+        this.playAnimation(PLAYER_STATE_NAME.IDLE);
         break;
       case PLAYER_STATE.RUN:
         this.onRun();
@@ -182,7 +201,13 @@ export class PlayerController extends Component {
 
   private onJumpUp() {
     if (this.isGrounded) {
+      this.countJump++;
       this.playAnimation(PLAYER_STATE_NAME.JUMP_UP);
+      this.velocityY = this.jumpForce;
+      this.isGrounded = false;
+    } else if (this.countJump >= 1) {
+      this.countJump = 0;
+      this.playAnimation(PLAYER_STATE_NAME.EXTRA_JUMP);
       this.velocityY = this.jumpForce;
       this.isGrounded = false;
     }
